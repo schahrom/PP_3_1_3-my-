@@ -9,14 +9,17 @@
 <h2> User info </h2>
 
 <form th:method="POST" th:action="@{/people}" th:object="${user}">
-  <label for="name" >Enter name: </label>
-  <input type="text" th:field="*{name}" id="name"/>
+  <label for="Username" >Enter username: </label>
+  <input type="text" th:field="*{username}" id="Username"/>
   <br/>
-  <label for="Surname" >Enter last name: </label>
-  <input type="text" th:field="*{surname}" id="Surname">
+  <label for="Email" >Enter email: </label>
+  <input type="text" th:field="*{email}" id="Email">
   <br/>
-  <label for="Age" >Enter age: </label>
-  <input type="number" th:field="*{age}" id="Age">
+  <label for="Role" >Enter role: </label>
+  <input type="text" th:field="*{roles}" id="Role">
+  <br/>
+  <label for="Password" >Enter password: </label>
+  <input type="text" th:field="*{password}" id="Password">
   <br/>
   <input type="submit" value="Create!"/>
 </form>
