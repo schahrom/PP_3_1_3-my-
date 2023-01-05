@@ -17,8 +17,6 @@ public class AdminController {
 
     @Autowired
     UserRepository userRepository;
-
-
     @Autowired
     UserService userService;
 
