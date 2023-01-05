@@ -59,7 +59,7 @@ public class UserService implements UserDetailsService {
     public boolean saveUser(User user) {
         User userFromDB = userRepository.findByUsername(user.getUsername());
 
-        if (userFromDB == null) {
+        if (!(userFromDB == null)) {
             return false;
         }
 
@@ -75,6 +75,11 @@ public class UserService implements UserDetailsService {
             return true;
         }
         return false;
+    }
+
+    public void update(User user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        userRepository.saveAndFlush(user);
     }
 
 }

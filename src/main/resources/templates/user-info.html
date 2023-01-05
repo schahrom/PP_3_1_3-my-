@@ -8,7 +8,7 @@
 <body>
 <h2> User info </h2>
 
-<form th:method="POST" th:action="@{/people}" th:object="${user}">
+<form th:method="POST" th:action="@{/admin}" th:object="${user}">
   <label for="Username" >Enter username: </label>
   <input type="text" th:field="*{username}" id="Username"/>
   <br/>

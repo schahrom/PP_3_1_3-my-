@@ -16,6 +16,10 @@ import java.util.List;
 public class AdminController {
 
     @Autowired
+    UserRepository userRepository;
+
+
+    @Autowired
     UserService userService;
 
     @GetMapping("/list")
@@ -47,7 +51,8 @@ public class AdminController {
     @PostMapping ("/{id}")
     public String update(@ModelAttribute("user") User user,
                          @PathVariable("id") Long id) {
-        userService.saveUser(user);
+        userService.update(user);
+//        userService.saveUser(user);
         return "redirect:/admin/list";
 
     }
