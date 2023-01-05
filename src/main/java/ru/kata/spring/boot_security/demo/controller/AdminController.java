@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.kata.spring.boot_security.demo.model.User;
 import ru.kata.spring.boot_security.demo.repository.UserRepository;
+import ru.kata.spring.boot_security.demo.service.UserService;
 
 import java.util.List;
 
@@ -15,11 +16,11 @@ import java.util.List;
 public class AdminController {
 
     @Autowired
-    UserRepository userService;
+    UserService userService;
 
     @GetMapping("/list")
     public String listUser(Model model) {
-        List<User> allUser = userService.findAll();
+        List<User> allUser = userService.allUser();
         model.addAttribute("allUser", allUser);
         return "list-user";
     }
@@ -32,28 +33,28 @@ public class AdminController {
 
     @PostMapping()
     public String create(@ModelAttribute("user") User user) {
-        userService.saveAndFlush(user);
+        userService.saveUser(user);
         return "redirect:/admin/list";
 
     }
 
     @GetMapping("/edit/{id}")
     public String edit(Model model, @PathVariable("id") Long id) {
-        model.addAttribute("user", userService.findById(id));
+        model.addAttribute("user", userService.findUserById(id));
         return "edit";
     }
 
     @PostMapping ("/{id}")
     public String update(@ModelAttribute("user") User user,
                          @PathVariable("id") Long id) {
-        userService.save(user);
+        userService.saveUser(user);
         return "redirect:/admin/list";
 
     }
 
     @DeleteMapping("/{id}")
     public String delete(@PathVariable("id") Long id) {
-        userService.deleteById(id);
+        userService.deleteUser(id);
         return "redirect:/admin/list";
     }
 }

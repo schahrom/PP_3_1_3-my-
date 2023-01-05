@@ -8,16 +8,16 @@
 <h2> Update person </h2>
 
 <form th:method="POST" th:action="@{/people/{id} (id = ${user.getId()})}" th:object="${user}">
-  <label for="name" >Enter name: </label>
-  <input type="text" th:field="*{name}" id="name"/>
+  <label for="name" >Enter username: </label>
+  <input type="text" th:field="*{username}" id="name"/>
   <br/>
-  <label for="Surname" >Enter last name: </label>
-  <input type="text" th:field="*{surname}" id="Surname">
+  <label for="Surname" >Enter email: </label>
+  <input type="text" th:field="*{email}" id="Surname">
   <br/>
   <input type="hidden" th:field="*{id}"/>
   <br/>
-  <label for="Age" >Enter age: </label>
-  <input type="number" th:field="*{age}" id="Age">
+  <label for="Age" >Enter password: </label>
+  <input type="number" th:field="*{password}" id="Age">
   <br/>
 
   <input type="submit" value="Update!"/>
