@@ -16,17 +16,15 @@ public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Column(nullable = false, unique = true, length = 45)
     private String email;
-
-    @Column(nullable = false, length = 64)
     private String password;
-
-    @Column(name = "username", nullable = false, length = 20)
     private String username;
+    private Long age;
+    private String lastName;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST})
+
+
+    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
     @JoinTable(
             name = "users_roles",
             joinColumns = @JoinColumn(name = "user_id"),
@@ -37,16 +35,27 @@ public class User implements UserDetails {
     public User() {
     }
 
-    public User(String username, String password, Collection<? extends GrantedAuthority> roles) {
-        this.username = username;
+    public User(String email, String password, String username, Long age, String lastName, Set<Role> roles) {
+        this.email = email;
         this.password = password;
-        this.roles = (Set<Role>) roles;
-
+        this.username = username;
+        this.age = age;
+        this.lastName = lastName;
+        this.roles = roles;
     }
-
 
     public void addRole(Role role) {
         this.roles.add(role);
+    }
+
+    @Override
+    public String getPassword() {
+        return password;
+    }
+
+    @Override
+    public String getUsername() {
+        return username;
     }
 
     @Override
